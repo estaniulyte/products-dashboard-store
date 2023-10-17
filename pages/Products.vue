@@ -2,9 +2,29 @@
   <v-container>
     <h1 class="mb-4">Products</h1>
     <SearchBox class="mb-4" @search="handleSearch" />
-    <ProductGrid v-if="paginatedProducts.length" :products="paginatedProducts">
-    </ProductGrid>
-    <div v-else>Loading products...</div>
+    <ProductGrid
+      v-if="paginatedProducts.length"
+      :products="paginatedProducts"
+    />
+
+    <InfoBox v-else-if="!searchQuery.length">
+      <v-progress-circular
+        class="text-center"
+        :size="70"
+        :width="7"
+        color="primary"
+        indeterminate
+      ></v-progress-circular>
+    </InfoBox>
+    <InfoBox v-else-if="searchQuery.length">
+      <template v-slot:header>
+        Unfortunately, your search for ' <b>{{ searchQuery }}</b> ' returned no
+        results..
+      </template>
+      <template v-slot:description>
+        Try again using a different term.
+      </template>
+    </InfoBox>
     <Pagination v-if="filteredProducts.length" :items="filteredProducts" />
   </v-container>
 </template>
