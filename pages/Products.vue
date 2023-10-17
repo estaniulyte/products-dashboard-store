@@ -1,6 +1,7 @@
 <template>
   <v-container>
-    <SearchBox class="my-4" @search="handleSearch" />
+    <h1 class="mb-4">Products</h1>
+    <SearchBox class="mb-4" @search="handleSearch" />
     <v-row>
       <v-col
         cols="12"
