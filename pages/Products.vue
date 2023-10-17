@@ -9,7 +9,13 @@
         v-for="product in paginatedProducts"
         :key="product.id"
       >
-        <ProductItem :product="product" @addToCart="addProductToCart" />
+        <ProductItem
+          :product="product"
+          :isWishlisted="checkIfWishlisted(product.id)"
+          @addToCart="addProductToCart"
+          @addToWishlist="addProductToWishlist"
+          @removeFromWishlist="removeProductFromWishlist"
+        />
       </v-col>
       <v-col v-if="!filteredProducts.length && searchQuery.length">
         <InfoBox>
@@ -91,12 +97,23 @@ export default defineComponent({
     addProductToCart(product) {
       this.$store.dispatch("addProductToCart", product);
     },
+    addProductToWishlist(product) {
+      this.$store.dispatch("addProductToWishlist", product);
+    },
+    removeProductFromWishlist(item) {
+      this.$store.dispatch("removeProductFromWishlist", item.id);
+    },
     changePage(value) {
       this.currentPage = value;
     },
     handleSearch(query) {
       this.searchQuery = query;
       this.currentPage = 1;
+    },
+    checkIfWishlisted(id) {
+      if (this.$store.state.wishlist.filter((item) => item.id === id).length)
+        return true;
+      else return false;
     },
   },
 });

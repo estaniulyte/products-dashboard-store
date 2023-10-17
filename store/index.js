@@ -4,38 +4,41 @@ function fetchProductsFromAPI() {
       resolve([
         {
           id: 1,
-          title: 'Laptop',
-          description: 'High-performance laptop with 16GB RAM and 512GB SSD',
+          title: "Laptop",
+          description: "High-performance laptop with 16GB RAM and 512GB SSD",
           price: 1200,
-          availability: 'In Stock'
+          availability: "In Stock",
         },
         {
           id: 2,
-          title: 'Smartphone',
-          description: 'Latest model smartphone with a stunning camera and fast processor',
+          title: "Smartphone",
+          description:
+            "Latest model smartphone with a stunning camera and fast processor",
           price: 800,
-          availability: 'Out of Stock'
+          availability: "Out of Stock",
         },
         {
           id: 3,
-          title: 'Headphones',
-          description: 'Wireless over-ear headphones with noise-canceling feature',
+          title: "Headphones",
+          description:
+            "Wireless over-ear headphones with noise-canceling feature",
           price: 250,
-          availability: 'In Stock'
+          availability: "In Stock",
         },
         {
           id: 4,
-          title: 'Smartwatch',
-          description: 'Water-resistant smartwatch with heart rate and sleep tracking',
+          title: "Smartwatch",
+          description:
+            "Water-resistant smartwatch with heart rate and sleep tracking",
           price: 300,
-          availability: 'In Stock'
+          availability: "In Stock",
         },
         {
           id: 5,
-          title: 'Tablet',
-          description: '10-inch tablet with powerful multitasking capabilities',
+          title: "Tablet",
+          description: "10-inch tablet with powerful multitasking capabilities",
           price: 600,
-          availability: 'Out of Stock'
+          availability: "Out of Stock",
         },
       ]);
     }, 1000);
@@ -51,11 +54,10 @@ function processCheckout(cartItems) {
           return;
         }
 
-        if (item.availability === 'Out of Stock') {
+        if (item.availability === "Out of Stock") {
           reject(new Error(`Product with ID ${item.id} is out of stock!`));
           return;
         }
-
       }
 
       resolve(true);
@@ -66,6 +68,7 @@ function processCheckout(cartItems) {
 export const state = () => ({
   products: [],
   cart: [],
+  wishlist: [],
   currentPage: 1,
 });
 
@@ -80,24 +83,38 @@ export const getters = {
   productsInCart: (state) => {
     return state.cart;
   },
+  productsInWishlist: (state) => {
+    return state.wishlist;
+  },
 };
 
 export const mutations = {
+  ADD_PRODUCT_TO_WISHLIST(state, product) {
+    const existingProduct = state.wishlist.find(
+      (item) => item.id === product.id
+    );
+    if (existingProduct) {
+      return;
+    } else {
+      state.wishlist.push({ ...product });
+    }
+  },
   ADD_PRODUCT_TO_CART(state, product) {
     const existingProduct = state.cart.find((item) => item.id === product.id);
     if (existingProduct) {
       existingProduct.quantity += 1;
     } else {
-      state.cart.push({...product, quantity: 1});
+      state.cart.push({ ...product, quantity: 1 });
     }
   },
   SET_CURRENT_PAGE(state, page) {
     state.currentPage = page;
   },
   UPDATE_PRODUCT_AVAILABILITY(state, product) {
-    const productIndex = state.products.findIndex(p => p.id === product.id);
+    const productIndex = state.products.findIndex((p) => p.id === product.id);
     if (productIndex !== -1) {
-      state.products[productIndex].availability = product.quantity > 0 ? 'In Stock' : 'Out of Stock';
+      state.products[productIndex].availability =
+        product.quantity > 0 ? "In Stock" : "Out of Stock";
     }
   },
 
@@ -112,13 +129,30 @@ export const mutations = {
       }
     }
   },
+  REMOVE_PRODUCT_FROM_WISHLIST(state, productId) {
+    const productIndex = state.wishlist.findIndex(
+      (item) => item.id === productId
+    );
+    if (productIndex !== -1) {
+      const product = state.wishlist[productIndex];
+      if (product) {
+        state.wishlist.splice(productIndex, 1);
+      }
+    }
+  },
   CLEAR_CART(state) {
     state.cart = [];
   },
+  CLEAR_WISHLIST(state) {
+    state.wishlist = [];
+  },
   UPDATE_PRODUCT_DETAILS(state, product) {
-    const productIndex = state.products.findIndex(p => p.id === product.id);
+    const productIndex = state.products.findIndex((p) => p.id === product.id);
     if (productIndex !== -1) {
-      state.products[productIndex] = {...state.products[productIndex], ...product};
+      state.products[productIndex] = {
+        ...state.products[productIndex],
+        ...product,
+      };
     }
   },
   SET_CART_ITEMS(state, items) {
@@ -128,55 +162,63 @@ export const mutations = {
     state.products = products;
   },
   INCREMENT_PRODUCT_QUANTITY(state, productId) {
-    const product = state.cart.find(item => item.id === productId);
+    const product = state.cart.find((item) => item.id === productId);
     if (product) product.quantity += 1;
   },
   DECREMENT_PRODUCT_QUANTITY(state, productId) {
-    const product = state.cart.find(item => item.id === productId);
+    const product = state.cart.find((item) => item.id === productId);
     if (product && product.quantity > 1) product.quantity -= 1;
   },
 };
 
 export const actions = {
-  addProductToCart({commit, state}, product) {
-    if (state.products.includes(product)) {
-      commit('ADD_PRODUCT_TO_CART', product);
+  addProductToCart({ commit, state }, product) {
+    if (!state.cart.includes(product)) {
+      commit("ADD_PRODUCT_TO_CART", product);
     }
 
     if (product.quantity > 0) {
-      commit('UPDATE_PRODUCT_AVAILABILITY', product);
+      commit("UPDATE_PRODUCT_AVAILABILITY", product);
     }
   },
-  removeProductFromCart({commit}, productId) {
-    commit('REMOVE_PRODUCT_FROM_CART', productId);
+  addProductToWishlist({ commit, state }, product) {
+    if (!state.wishlist.includes(product)) {
+      commit("ADD_PRODUCT_TO_WISHLIST", product);
+    }
   },
-  clearCart({commit}) {
-    commit('CLEAR_CART');
+  removeProductFromCart({ commit }, productId) {
+    commit("REMOVE_PRODUCT_FROM_CART", productId);
   },
-  updateProductDetails({commit}, product) {
-    commit('UPDATE_PRODUCT_DETAILS', product);
+  removeProductFromWishlist({ commit }, productId) {
+    commit("REMOVE_PRODUCT_FROM_WISHLIST", productId);
   },
-  async loadProducts({commit}) {
+  clearCart({ commit }) {
+    commit("CLEAR_CART");
+  },
+  updateProductDetails({ commit }, product) {
+    commit("UPDATE_PRODUCT_DETAILS", product);
+  },
+  async loadProducts({ commit }) {
     try {
       const products = await fetchProductsFromAPI(); // Using the previously mocked function
-      commit('SET_PRODUCTS', products);
+      commit("SET_PRODUCTS", products);
     } catch (error) {
-      console.error('An error occurred while fetching products:', error);
+      console.error("An error occurred while fetching products:", error);
     }
   },
-  async checkout({commit, state}) {
+  async checkout({ commit, state }) {
     const success = await processCheckout(state.cart); // Define this function as per your process
     if (success) {
-      commit('CLEAR_CART');
+      commit("CLEAR_CART");
     }
   },
-  incrementProductQuantity({commit}, productId) {
-    commit('INCREMENT_PRODUCT_QUANTITY', productId);
+  incrementProductQuantity({ commit }, productId) {
+    commit("INCREMENT_PRODUCT_QUANTITY", productId);
   },
-  decrementProductQuantity({commit}, productId) {
-    commit('DECREMENT_PRODUCT_QUANTITY', productId);
+  decrementProductQuantity({ commit }, productId) {
+    commit("DECREMENT_PRODUCT_QUANTITY", productId);
   },
-  setCartItems({commit}, items) {
-    commit('SET_CART_ITEMS', items);
+  setCartItems({ commit }, items) {
+    commit("SET_CART_ITEMS", items);
   },
 };
