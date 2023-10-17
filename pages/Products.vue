@@ -5,12 +5,7 @@
     <ProductGrid v-if="paginatedProducts.length" :products="paginatedProducts">
     </ProductGrid>
     <div v-else>Loading products...</div>
-    <v-pagination
-      v-if="filteredProducts.length"
-      v-model="currentPage"
-      :length="totalPages"
-      @input="changePage"
-    ></v-pagination>
+    <Pagination v-if="filteredProducts.length" :items="filteredProducts" />
   </v-container>
 </template>
 
@@ -20,6 +15,7 @@ import ProductCard from "../components/ProductCard.vue";
 import SearchBox from "../components/SearchBox.vue";
 import InfoBox from "../components/InfoBox.vue";
 import ProductGrid from "../components/ProductGrid.vue";
+import Pagination from "../components/Pagination.vue";
 
 export default defineComponent({
   name: "Products",
@@ -28,6 +24,7 @@ export default defineComponent({
     SearchBox,
     InfoBox,
     ProductGrid,
+    Pagination,
   },
   data() {
     return {
@@ -47,10 +44,7 @@ export default defineComponent({
       },
     },
     pageSize() {
-      return 3;
-    },
-    totalPages() {
-      return Math.ceil(this.filteredProducts.length / this.pageSize);
+      return this.$store.state.itemsPerPage;
     },
     filteredProducts() {
       let tempProducts = [...this.products];
@@ -72,9 +66,6 @@ export default defineComponent({
     },
   },
   methods: {
-    changePage(value) {
-      this.currentPage = value;
-    },
     handleSearch(query) {
       this.searchQuery = query;
       this.currentPage = 1;
