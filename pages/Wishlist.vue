@@ -1,22 +1,7 @@
 <template>
   <v-container>
     <h1 class="mb-4">Wishlist</h1>
-    <v-row v-if="wishlistItems.length">
-      <v-col
-        cols="12"
-        sm="6"
-        md="4"
-        v-for="product in wishlistItems"
-        :key="product.id"
-      >
-        <ProductItem
-          :product="product"
-          :isWishlisted="checkIfWishlisted(product.id)"
-          @addToCart="addProductToCart"
-          @removeFromWishlist="removeProductFromWishlist"
-        />
-      </v-col>
-    </v-row>
+    <ProductGrid v-if="wishlistItems.length" :products="wishlistItems" />
     <InfoBox v-else>
       <template v-slot:header> No items in wishlist. </template>
       <template v-slot:description>
@@ -29,13 +14,16 @@
 
 <script>
 import { defineComponent } from "vue";
-import ProductItem from "~/pages/ProductItem.vue";
+import ProductCard from "../components/ProductCard.vue";
+import ProductGrid from "../components/ProductGrid.vue";
 import InfoBox from "../components/InfoBox.vue";
 
 export default defineComponent({
   name: "Wishlist",
   components: {
-    ProductItem,
+    ProductCard,
+    InfoBox,
+    ProductGrid,
   },
   computed: {
     wishlistItems() {
@@ -47,7 +35,6 @@ export default defineComponent({
       this.$store.dispatch("removeProductFromWishlist", item.id);
     },
     addProductToCart(product) {
-      console.log(product);
       this.$store.dispatch("addProductToCart", product);
     },
     checkIfWishlisted(id) {
@@ -56,6 +43,5 @@ export default defineComponent({
       else return false;
     },
   },
-  components: { ProductItem, InfoBox },
 });
 </script>

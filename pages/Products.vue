@@ -2,34 +2,9 @@
   <v-container>
     <h1 class="mb-4">Products</h1>
     <SearchBox class="mb-4" @search="handleSearch" />
-    <v-row>
-      <v-col
-        cols="12"
-        sm="6"
-        md="4"
-        v-for="product in paginatedProducts"
-        :key="product.id"
-      >
-        <ProductItem
-          :product="product"
-          :isWishlisted="checkIfWishlisted(product.id)"
-          @addToCart="addProductToCart"
-          @addToWishlist="addProductToWishlist"
-          @removeFromWishlist="removeProductFromWishlist"
-        />
-      </v-col>
-      <v-col v-if="!filteredProducts.length && searchQuery.length">
-        <InfoBox>
-          <template v-slot:header>
-            Unfortunately, your search for ' <b>{{ searchQuery }}</b> ' returned
-            no results..
-          </template>
-          <template v-slot:description>
-            Try again using a different term.
-          </template>
-        </InfoBox>
-      </v-col>
-    </v-row>
+    <ProductGrid v-if="paginatedProducts.length" :products="paginatedProducts">
+    </ProductGrid>
+    <div v-else>Loading products...</div>
     <v-pagination
       v-if="filteredProducts.length"
       v-model="currentPage"
@@ -41,16 +16,18 @@
 
 <script>
 import { defineComponent } from "vue";
-import ProductItem from "~/pages/ProductItem.vue";
+import ProductCard from "../components/ProductCard.vue";
 import SearchBox from "../components/SearchBox.vue";
 import InfoBox from "../components/InfoBox.vue";
+import ProductGrid from "../components/ProductGrid.vue";
 
 export default defineComponent({
   name: "Products",
   components: {
-    ProductItem,
+    ProductCard,
     SearchBox,
     InfoBox,
+    ProductGrid,
   },
   data() {
     return {
@@ -95,26 +72,12 @@ export default defineComponent({
     },
   },
   methods: {
-    addProductToCart(product) {
-      this.$store.dispatch("addProductToCart", product);
-    },
-    addProductToWishlist(product) {
-      this.$store.dispatch("addProductToWishlist", product);
-    },
-    removeProductFromWishlist(item) {
-      this.$store.dispatch("removeProductFromWishlist", item.id);
-    },
     changePage(value) {
       this.currentPage = value;
     },
     handleSearch(query) {
       this.searchQuery = query;
       this.currentPage = 1;
-    },
-    checkIfWishlisted(id) {
-      if (this.$store.state.wishlist.filter((item) => item.id === id).length)
-        return true;
-      else return false;
     },
   },
 });
