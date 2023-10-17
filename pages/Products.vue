@@ -1,5 +1,26 @@
+<template>
+  <v-container>
+    <v-row>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+        v-for="product in products"
+        :key="product.id"
+      >
+        <ProductItem :product="product" @addToCart="addProductToCart" />
+      </v-col>
+    </v-row>
+    <v-pagination
+      v-model="currentPage"
+      :length="totalPages"
+      @input="changePage"
+    ></v-pagination>
+  </v-container>
+</template>
+
 <script>
-import {defineComponent} from 'vue';
+import { defineComponent } from 'vue';
 import ProductItem from '~/pages/ProductItem.vue';
 
 export default defineComponent({
@@ -40,18 +61,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<template>
-  <v-container>
-    <v-row>
-      <v-col cols="12" sm="6" md="4" v-for="product in products" :key="product.id">
-        <ProductItem :product="product" @addToCart="addProductToCart"/>
-      </v-col>
-    </v-row>
-    <v-pagination
-      v-model="currentPage"
-      :length="totalPages"
-      @input="changePage"
-    ></v-pagination>
-  </v-container>
-</template>

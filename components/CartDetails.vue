@@ -1,21 +1,3 @@
-<script>
-import {mapGetters} from 'vuex';
-import {defineComponent} from 'vue';
-
-export default defineComponent({
-  name: 'CartDetails',
-  computed: {
-    ...mapGetters(['productsInCart', 'cartTotalPrice']),
-    cartItems() {
-      return this.productsInCart;
-    },
-    total() {
-      return this.cartTotalPrice;
-    },
-  },
-});
-</script>
-
 <template>
   <div>
     <v-list>
@@ -31,3 +13,20 @@ export default defineComponent({
   </div>
 </template>
 
+<script>
+import { mapGetters } from 'vuex';
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  name: 'CartDetails',
+  computed: {
+    ...mapGetters(['productsInCart', 'cartTotalPrice']),
+    cartItems() {
+      return this.productsInCart;
+    },
+    total() {
+      return this.cartTotalPrice;
+    },
+  },
+});
+</script>
