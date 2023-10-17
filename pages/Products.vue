@@ -11,6 +11,17 @@
       >
         <ProductItem :product="product" @addToCart="addProductToCart" />
       </v-col>
+      <v-col v-if="!filteredProducts.length && searchQuery.length">
+        <InfoBox>
+          <template v-slot:header>
+            Unfortunately, your search for ' <b>{{ searchQuery }}</b> ' returned
+            no results..
+          </template>
+          <template v-slot:description>
+            Try again using a different term.
+          </template>
+        </InfoBox>
+      </v-col>
     </v-row>
     <v-pagination
       v-if="filteredProducts.length"
@@ -25,12 +36,14 @@
 import { defineComponent } from "vue";
 import ProductItem from "~/pages/ProductItem.vue";
 import SearchBox from "../components/SearchBox.vue";
+import InfoBox from "../components/InfoBox.vue";
 
 export default defineComponent({
   name: "Products",
   components: {
     ProductItem,
     SearchBox,
+    InfoBox,
   },
   data() {
     return {
