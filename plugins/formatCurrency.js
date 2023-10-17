@@ -1,5 +1,6 @@
 function formatCurrency(value) {
-  return `$${value.toFixed(2)}`;
+  if (value) return `$${value.toFixed(2)}`;
+  return;
 }
 
 export default (context, inject) => {
