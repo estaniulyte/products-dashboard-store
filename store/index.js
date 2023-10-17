@@ -70,6 +70,7 @@ export const state = () => ({
   cart: [],
   wishlist: [],
   currentPage: 1,
+  itemsPerPage: 3,
 });
 
 export const getters = {
@@ -109,6 +110,9 @@ export const mutations = {
   },
   SET_CURRENT_PAGE(state, page) {
     state.currentPage = page;
+  },
+  SET_ITEMS_PER_PAGE(state, page) {
+    state.itemsPerPage = page;
   },
   UPDATE_PRODUCT_AVAILABILITY(state, product) {
     const productIndex = state.products.findIndex((p) => p.id === product.id);
