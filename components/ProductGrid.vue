@@ -4,6 +4,7 @@
       cols="12"
       sm="6"
       md="4"
+      xl="3"
       v-for="product in products"
       :key="product.id"
     >
