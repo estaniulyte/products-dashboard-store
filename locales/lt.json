@@ -1,0 +1,43 @@
+{
+  "heading": {
+    "Products": "Produktai",
+    "Home": "Pagrindinis",
+    "Wishlist": "Pageidavimų sąrašas",
+    "Front-end task": "Front-end užduotis",
+    "Cart": "Krepšelis"
+  },
+  "wishlist": {
+    "Browse": "Naršyk",
+    "No items in wishlist": "Tavo pageidavimų sąrašas tuščias",
+    "in produts section": "produktų skyrelyje",
+    "to add items to favourites": " ir žymėk širdele patikusiuos produktus"
+  },
+  "table": {
+    "Total": "Iš viso",
+    "Title": "Pavadinimas",
+    "Price": "Kaina",
+    "Actions": "Veiksmai"
+  },
+  "cart": {
+    "Add to Cart": "Pridėti į krepšelį",
+    "View Cart": "Peržiūrėti krepšelį",
+    "Checkout": "Apmokėti",
+    "Clear Cart": "Išvalyti krepšelį",
+    "No items in cart": "Jūsų krepšelis tusčias",
+    "to add items to cart": "kad pridėtum prekių į krepšelį"
+  },
+  "search": {
+    "Unfortunately, your search for": "Deja, jūsų paieška",
+    "returned no results": "nepateikė jokių rezultatų",
+    "Try again using a different term": "Bandykite dar kartą naudodami kitą terminą"
+  },
+  "product": {
+    "title": {
+      "Laptop": "Nešiojamas kompiuteris",
+      "Smartphone": "Išmanusis telefonas",
+      "Headphones": "Ausinės",
+      "Smartwatch": "Išmanusis laikrodis",
+      "Tablet": "Planšetė"
+    }
+  }
+}

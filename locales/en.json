@@ -1,0 +1,43 @@
+{
+  "heading": {
+    "Products": "Products",
+    "Home": "Home",
+    "Wishlist": "Wishlist",
+    "Front-end task": "Front-end task",
+    "Cart": "Cart"
+  },
+  "wishlist": {
+    "Browse": "Browse",
+    "No items in wishlist": "No items in wishlist",
+    "in produts section": "produts section",
+    "to add items to favourites": " and add items to favourites by marking with heart"
+  },
+  "table": {
+    "Total": "Total",
+    "Title": "Title",
+    "Price": "Price",
+    "Actions": "Actions"
+  },
+  "cart": {
+    "Add to Cart": "Add to Cart",
+    "View Cart": "View Cart",
+    "Checkout": "Checkout",
+    "Clear Cart": "Clear Cart",
+    "No items in cart": "No items in cart",
+    "to add items to cart": "to add items to cart"
+  },
+  "search": {
+    "Unfortunately, your search for": "Unfortunately, your search for",
+    "returned no results": "returned no results",
+    "Try again using a different term": "Try again using a different term"
+  },
+  "product": {
+    "title": {
+      "Laptop": "Laptop",
+      "Smartphone": "Smartpohone",
+      "Headphones": "Headphones",
+      "Smartwatch": "Smartwatch",
+      "Tablet": "Tablet"
+    }
+  }
+}
