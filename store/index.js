@@ -6,6 +6,8 @@ function fetchProductsFromAPI() {
           id: 1,
           title: "Laptop",
           description: "High-performance laptop with 16GB RAM and 512GB SSD",
+          description_lt:
+            "Didelio našumo nešiojamas kompiuteris su 16 GB RAM ir 512 GB SSD",
           price: 1200,
           availability: "In Stock",
         },
@@ -14,6 +16,8 @@ function fetchProductsFromAPI() {
           title: "Smartphone",
           description:
             "Latest model smartphone with a stunning camera and fast processor",
+          description_lt:
+            "Naujausio modelio išmanusis telefonas su nuostabia kamera ir greitu procesoriumi",
           price: 800,
           availability: "Out of Stock",
         },
@@ -22,6 +26,7 @@ function fetchProductsFromAPI() {
           title: "Headphones",
           description:
             "Wireless over-ear headphones with noise-canceling feature",
+          description_lt: "Belaidės ausinės su triukšmo slopinimo funkcija",
           price: 250,
           availability: "In Stock",
         },
@@ -30,6 +35,8 @@ function fetchProductsFromAPI() {
           title: "Smartwatch",
           description:
             "Water-resistant smartwatch with heart rate and sleep tracking",
+          description_lt:
+            "Vandeniui atsparus išmanusis laikrodis su širdies ritmo ir miego stebėjimu",
           price: 300,
           availability: "In Stock",
         },
@@ -37,6 +44,8 @@ function fetchProductsFromAPI() {
           id: 5,
           title: "Tablet",
           description: "10-inch tablet with powerful multitasking capabilities",
+          description_lt:
+            "10 colių planšetinis kompiuteris su galingomis daugiafunkcinėmis galimybėmis",
           price: 600,
           availability: "Out of Stock",
         },
