@@ -24,6 +24,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>{{ $t("heading." + title) }}</v-toolbar-title>
       <v-spacer />
+      <LanguageSwitcher />
       <v-btn icon to="/wishlist">
         <v-badge
           :value="wishlistItemCount"
@@ -61,6 +62,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import LanguageSwitcher from "../components/LanguageSwitcher.vue";
 
 export default {
   name: "DefaultLayout",
@@ -98,11 +100,11 @@ export default {
   mounted() {
     this.$store.dispatch("loadProducts");
   },
-
   methods: {
     showCart() {
       this.rightDrawer = !this.rightDrawer;
     },
   },
+  components: { LanguageSwitcher },
 };
 </script>
