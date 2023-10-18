@@ -1,12 +1,17 @@
 <template>
   <v-container>
-    <h1 class="mb-4">Wishlist</h1>
+    <h1 class="mb-4">{{ $t("heading.Wishlist") }}</h1>
     <ProductGrid v-if="wishlistItems.length" :products="wishlistItems" />
     <InfoBox v-else>
-      <template v-slot:header> No items in wishlist. </template>
+      <template v-slot:header
+        >{{ $t("wishlist.No items in wishlist") }}.
+      </template>
       <template v-slot:description>
-        Browse <router-link to="/products">produts list</router-link> to add
-        items to favourites.
+        {{ $t("wishlist.Browse") }}
+        <router-link to="/products"
+          >{{ $t("wishlist.in produts section") }}
+        </router-link>
+        {{ $t("wishlist.to add items to favourites") }}.
       </template>
     </InfoBox>
   </v-container>

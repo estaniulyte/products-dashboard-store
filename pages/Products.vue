@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1 class="mb-4">Products</h1>
+    <h1 class="mb-4">{{ $t("heading.Products") }}</h1>
     <SearchBox class="mb-4" @search="handleSearch" />
     <ProductGrid
       v-if="paginatedProducts.length"
@@ -18,14 +18,18 @@
     </InfoBox>
     <InfoBox v-else-if="searchQuery.length">
       <template v-slot:header>
-        Unfortunately, your search for ' <b>{{ searchQuery }}</b> ' returned no
-        results..
+        {{ $t("search.Unfortunately, your search for") }} '
+        <b>{{ searchQuery }}</b> ' {{ $t("search.returned no results") }}..
       </template>
       <template v-slot:description>
-        Try again using a different term.
+        {{ $t("search.Try again using a different term") }}.
       </template>
     </InfoBox>
-    <Pagination v-if="filteredProducts.length" :items="filteredProducts" />
+    <Pagination
+      v-if="filteredProducts.length"
+      :items="filteredProducts"
+      class="my-3"
+    />
   </v-container>
 </template>
 

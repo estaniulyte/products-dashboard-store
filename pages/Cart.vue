@@ -3,15 +3,10 @@
     <template v-slot:default>
       <thead>
         <tr>
-          <th>Title</th>
-          <th>Price</th>
-          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in cartItems" :key="item.id">
-          <td>{{ item.title }}</td>
-          <td>{{ $formatCurrency(item.price) }}</td>
           <td>
             <v-btn icon @click="incrementProductQuantity(item)">
               <v-icon>mdi-plus</v-icon>
@@ -28,13 +23,16 @@
           <td>Total:</td>
           <td>{{ $formatCurrency(total) }}</td>
           <td>
-            <v-btn @click="checkout">Checkout</v-btn>
-            <v-btn @click="clearCart">Clear Cart</v-btn>
           </td>
         </tr>
       </tbody>
     </template>
   </v-simple-table>
+            <th>{{ $t("table.Title") }}</th>
+            <th>{{ $t("table.Price") }}</th>
+            <th>{{ $t("table.Actions") }}</th>
+                $t("cart.Checkout")
+                $t("cart.Clear Cart")
 </template>
 
 <script>

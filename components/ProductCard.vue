@@ -1,7 +1,7 @@
 <template>
   <GenericCard>
     <template v-slot:title>
-      {{ title }}
+      {{ $t("product.title." + title) }}
     </template>
     <template v-slot:top-actions>
       <v-btn v-if="!isWishlisted" icon @click="$emit('addToWishlist', product)">
@@ -19,12 +19,10 @@
     <template v-slot:subtitle>
       {{ $formatCurrency(price) }}
     </template>
-    <template v-slot:description>
-      {{ description }}
-    </template>
+    <template v-slot:description> {{ description }}. </template>
     <template v-slot:actions>
-      <v-btn color="primary" @click="$emit('addToCart', product)"
-        >Add to Cart
+      <v-btn width="100%" color="primary" @click="$emit('addToCart', product)"
+        >{{ $t("cart.Add to Cart") }}
       </v-btn>
     </template>
   </GenericCard>
@@ -51,16 +49,22 @@ export default defineComponent({
   data() {
     return {
       title: "",
-      description: "",
       price: "",
     };
   },
+  computed: {
+    description() {
+      const locale = this.$i18n.locale;
+
+      if (locale !== "en") {
+        return this.product[`description_${locale}`];
+      } else {
+        return this.product.description;
+      }
+    },
+  },
   mounted() {
-    ({
-      title: this.title,
-      description: this.description,
-      price: this.price,
-    } = this.product);
+    ({ title: this.title, price: this.price } = this.product);
   },
 });
 </script>
