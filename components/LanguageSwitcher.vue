@@ -2,15 +2,32 @@
   <div class="text-center">
     <v-menu offset-y>
       <template v-slot:activator="{ on, attrs }">
-        <v-btn depressed v-bind="attrs" v-on="on">
+        <v-btn
+          class="text-body-1 grey--text text--darken-2 font-weight-medium px-0"
+          depressed
+          v-bind="attrs"
+          v-on="on"
+        >
           {{ locale }}
           <v-icon small> mdi-chevron-down </v-icon>
         </v-btn>
       </template>
-      <v-list>
-        <v-list-item v-for="(item, index) in items" :key="index" link>
-          <v-list-item-title @click="changeLocale(item.slug)" class="px-2">
-            {{ item.title }}</v-list-item-title
+      <v-list class="pa-0">
+        <v-list-item
+          class="pa-0"
+          v-for="(item, index) in items"
+          :key="index"
+          link
+        >
+          <v-btn
+            class="px-6 py-1"
+            :class="{ 'primary--text': item.slug === $i18n.locale }"
+            @click="changeLocale(item.slug)"
+            width="100%"
+            plain
+            block
+          >
+            {{ item.title }}</v-btn
           >
         </v-list-item>
       </v-list>
