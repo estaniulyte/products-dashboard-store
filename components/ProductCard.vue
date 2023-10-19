@@ -21,8 +21,14 @@
     </template>
     <template v-slot:description> {{ description }}. </template>
     <template v-slot:actions>
-      <v-btn width="100%" color="primary" @click="$emit('addToCart', product)"
-        >{{ $t("cart.Add to Cart") }}
+      <v-btn
+        width="100%"
+        color="primary"
+        @click="$emit('addToCart', product)"
+        :disabled="!isAvailable"
+      >
+        <span v-if="isAvailable">{{ $t("cart.Add to Cart") }}</span>
+        <span v-else> {{ $t("cart.Out of stock") }}</span>
       </v-btn>
     </template>
   </GenericCard>
@@ -61,6 +67,11 @@ export default defineComponent({
       } else {
         return this.product.description;
       }
+    },
+    isAvailable() {
+      if (this.product.availability === "In Stock") return true;
+      else if (this.product.availability === "Out of Stock") return false;
+      else return false;
     },
   },
   mounted() {
