@@ -70,13 +70,13 @@ export default defineComponent({
   },
   methods: {
     incrementProductQuantity(item) {
-      this.$store.dispatch("incrementProductQuantity", item);
+      this.$store.dispatch("incrementProductQuantity", item.id);
     },
     decrementProductQuantity(item) {
-      this.$store.dispatch("decrementProductQuantity", item);
+      this.$store.dispatch("decrementProductQuantity", item.id);
     },
     removeProductFromCart(item) {
-      this.$store.dispatch("removeProductFromCart", item);
+      this.$store.dispatch("removeProductFromCart", item.id);
     },
     checkout() {
       this.$store.dispatch("checkout");
