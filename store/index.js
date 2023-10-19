@@ -133,24 +133,16 @@ export const mutations = {
 
   REMOVE_PRODUCT_FROM_CART(state, productId) {
     const productIndex = state.cart.findIndex((item) => item.id === productId);
-    if (productIndex !== -1) {
-      const product = state.cart[productIndex];
-      if (product.quantity > 1) {
-        product.quantity -= 1;
-      } else {
-        state.cart.splice(productIndex, 1);
-      }
+    if (productIndex >= 0) {
+      state.cart.splice(productIndex, 1);
     }
   },
   REMOVE_PRODUCT_FROM_WISHLIST(state, productId) {
     const productIndex = state.wishlist.findIndex(
       (item) => item.id === productId
     );
-    if (productIndex !== -1) {
-      const product = state.wishlist[productIndex];
-      if (product) {
-        state.wishlist.splice(productIndex, 1);
-      }
+    if (productIndex >= 0) {
+      state.wishlist.splice(productIndex, 1);
     }
   },
   CLEAR_CART(state) {
