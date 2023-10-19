@@ -16,7 +16,8 @@
     "Total": "Iš viso",
     "Title": "Pavadinimas",
     "Price": "Kaina",
-    "Actions": "Veiksmai"
+    "Actions": "Veiksmai",
+    "Amount": "Kiekis"
   },
   "cart": {
     "Add to Cart": "Pridėti į krepšelį",

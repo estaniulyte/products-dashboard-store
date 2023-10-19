@@ -16,7 +16,8 @@
     "Total": "Total",
     "Title": "Title",
     "Price": "Price",
-    "Actions": "Actions"
+    "Actions": "Actions",
+    "Amount": "Amount"
   },
   "cart": {
     "Add to Cart": "Add to Cart",
