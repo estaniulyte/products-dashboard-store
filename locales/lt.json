@@ -24,7 +24,8 @@
     "Checkout": "Apmokėti",
     "Clear Cart": "Išvalyti krepšelį",
     "No items in cart": "Jūsų krepšelis tusčias",
-    "to add items to cart": "kad pridėtum prekių į krepšelį"
+    "to add items to cart": "kad pridėtum prekių į krepšelį",
+    "Out of stock": "Išparduota"
   },
   "search": {
     "Unfortunately, your search for": "Deja, jūsų paieška",
