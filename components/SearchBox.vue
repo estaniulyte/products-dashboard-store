@@ -3,7 +3,7 @@
     v-model="query"
     @input="handleInput"
     prepend-inner-icon="mdi-magnify"
-    label="Search..."
+    :label="$t('search.Search')"
     hide-details
     single-line
     justify-sm
@@ -20,6 +20,11 @@ export default defineComponent({
     return {
       query: "",
     };
+  },
+  computed: {
+    label() {
+      return this.$t("search");
+    },
   },
   methods: {
     handleInput() {
