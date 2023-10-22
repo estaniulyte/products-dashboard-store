@@ -6,8 +6,7 @@
       v-if="paginatedProducts.length"
       :products="paginatedProducts"
     />
-
-    <InfoBox v-else-if="!searchQuery.length">
+    <InfoBox v-else-if="isLoading">
       <v-progress-circular
         class="text-center"
         :size="70"
@@ -16,9 +15,15 @@
         indeterminate
       ></v-progress-circular>
     </InfoBox>
+    <InfoBox v-else-if="!isLoading && !searchQuery.length">
+      <template v-slot:header>{{ $t("search.No items found") }}</template>
+      <template v-slot:description
+        >{{ $t("search.Try to reload the page or come back later") }}.</template
+      >
+    </InfoBox>
     <InfoBox v-else-if="searchQuery.length">
       <template v-slot:header>
-        {{ $t("search.Unfortunately, your search for") }} '
+        '
         <b>{{ searchQuery }}</b> ' {{ $t("search.returned no results") }}..
       </template>
       <template v-slot:description>
@@ -58,6 +63,9 @@ export default defineComponent({
   computed: {
     products() {
       return this.$store.state.products;
+    },
+    isLoading() {
+      return this.$store.state.loading;
     },
     currentPage: {
       get() {
