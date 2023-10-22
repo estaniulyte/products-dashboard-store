@@ -80,6 +80,7 @@ export const state = () => ({
   wishlist: [],
   currentPage: 1,
   itemsPerPage: 3,
+  loading: false,
 });
 
 export const getters = {
@@ -174,6 +175,9 @@ export const mutations = {
     const product = state.cart.find((item) => item.id === productId);
     if (product && product.quantity > 1) product.quantity -= 1;
   },
+  SET_LOADING(state, isLoading) {
+    state.loading = isLoading;
+  },
 };
 
 export const actions = {
@@ -205,10 +209,13 @@ export const actions = {
   },
   async loadProducts({ commit }) {
     try {
+      commit("SET_LOADING", true);
       const products = await fetchProductsFromAPI(); // Using the previously mocked function
       commit("SET_PRODUCTS", products);
+      commit("SET_LOADING", false);
     } catch (error) {
       console.error("An error occurred while fetching products:", error);
+      commit("SET_LOADING", false);
     }
   },
   async checkout({ commit, state }) {
