@@ -31,7 +31,10 @@
   "search": {
     "Unfortunately, your search for": "Unfortunately, your search for",
     "returned no results": "returned no results",
-    "Try again using a different term": "Try again using a different term"
+    "Try again using a different term": "Try again using a different term",
+    "Search": "Search",
+    "No items found": "No items found",
+    "Try to reload the page or come back later": "Try to reload the page or come back later"
   },
   "product": {
     "title": {

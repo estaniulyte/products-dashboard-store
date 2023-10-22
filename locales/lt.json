@@ -31,7 +31,10 @@
   "search": {
     "Unfortunately, your search for": "Deja, jūsų paieška",
     "returned no results": "nepateikė jokių rezultatų",
-    "Try again using a different term": "Bandykite dar kartą naudodami kitą terminą"
+    "Try again using a different term": "Bandykite dar kartą naudodami kitą terminą",
+    "Search": "Paieška",
+    "No items found": "Nieko nerasta",
+    "Try to reload the page or come back later": "Pabandykite iš naujo įkelti puslapį arba grįžkite vėliau"
   },
   "product": {
     "title": {
