@@ -4,7 +4,9 @@
     "Home": "Home",
     "Wishlist": "Wishlist",
     "Front-end task": "Front-end task",
-    "Cart": "Cart"
+    "Cart": "Cart",
+    "Task": "Task | Tasks",
+    "Description": "Description"
   },
   "wishlist": {
     "Browse": "Browse",

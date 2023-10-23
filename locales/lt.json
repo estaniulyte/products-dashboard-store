@@ -4,7 +4,9 @@
     "Home": "Pagrindinis",
     "Wishlist": "Pageidavimų sąrašas",
     "Front-end task": "Front-end užduotis",
-    "Cart": "Krepšelis"
+    "Cart": "Krepšelis",
+    "Task": "Užduotis | Užduotys",
+    "Description": "Aprašymas"
   },
   "wishlist": {
     "Browse": "Naršyk",
